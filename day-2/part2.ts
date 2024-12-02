@@ -10,32 +10,7 @@ const reports = input.split("\n").filter((l) => !!l.trim()).map((line) =>
 
 let safeReportCount = 0;
 
-const unsafeReports = [];
-
-mainloop:
 for (const report of reports) {
-    const isIncreasing = report[1] > report[0];
-    for (let i = 1; i < report.length; i++) {
-        if (![1, 2, 3].includes(Math.abs(report[i] - report[i - 1]))) {
-            unsafeReports.push(report);
-            continue mainloop;
-        }
-        if (isIncreasing) {
-            if (report[i] <= report[i - 1]) {
-                unsafeReports.push(report);
-                continue mainloop;
-            }
-        } else {
-            if (report[i] >= report[i - 1]) {
-                unsafeReports.push(report);
-                continue mainloop;
-            }
-        }
-    }
-    safeReportCount++;
-}
-
-for (const report of unsafeReports) {
     reportloop:
     for (let j = 0; j < report.length; j++) {
         const shortendReport = report.toSpliced(j, 1);
