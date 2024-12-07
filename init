@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [ ! -e day-$1 ]; then
+    mkdir day-$1/
+    touch day-$1/input.txt
+    touch day-$1/testinput.txt
+    cp -p day-7/part1.ts day-$1/part1.ts
+else
+    echo "day $1 exists allready!" >&2
+fi
