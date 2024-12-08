@@ -1,10 +1,25 @@
 #!/usr/bin/env bash
 
-if [ ! -e day-$1 ]; then
-    mkdir day-$1/
-    touch day-$1/input.txt
-    touch day-$1/testinput.txt
-    cp -p day-7/part1.ts day-$1/part1.ts
+set -o errexit
+set -o nounset
+set -o pipefail
+
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+cd "${__dir}"
+
+declare -i day=${1:-0}
+
+if [[ $day -le 0 && "$(date +%m)" = "12" ]]; then
+    day=$(date +%d)
+fi
+
+if [ ! -e day-$day ]; then
+    mkdir day-$day/
+    touch day-$day/testinput.txt
+    ../aoc download --day $day --input-file day-$day/input.txt --puzzle-file day-$day/puzzle.md
+    cp -p day-7/part1.ts day-$day/part1.ts
+    code day-$day/part1.ts day-$day/puzzle.md
 else
-    echo "day $1 exists allready!" >&2
+    echo "day $day exists allready!" >&2
 fi
