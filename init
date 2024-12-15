@@ -8,17 +8,28 @@ __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "${__dir}"
 
-declare -i day=${1:-0}
+day=${1:-0}
 
 if [[ $day -le 0 && "$(date +%m)" = "12" ]]; then
-    day=$(date +%d)
+    day="$(date +%d)"
 fi
+
+day="${day/0/}"
 
 if [ ! -e day-$day ]; then
     mkdir day-$day/
     touch day-$day/testinput.txt
     ../aoc download --day $day --input-file day-$day/input.txt --puzzle-file day-$day/puzzle.md
-    cp -p day-7/part1.ts day-$day/part1.ts
+    echo '#!/usr/bin/env deno
+
+const input = await Deno.readTextFile(
+    `${import.meta.dirname}/${
+        Deno.args.includes("test") ? "testinput.txt" : "input.txt"
+    }`,
+);
+
+const lines = input.trim().split("\n");
+' > day-$day/part1.ts
     code day-$day/part1.ts day-$day/puzzle.md
 else
     echo "day $day exists allready!" >&2

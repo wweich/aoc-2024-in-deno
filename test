@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 if [[ -f day-$1/part2.ts ]]; then
-    deno run --allow-read=day-$1/ --watch day-$1/part2.ts test
+    deno run --allow-read=day-$1/ --allow-write=day-$1/output.txt --watch day-$1/part2.ts test
 elif [[ -f day-$1/part1.ts ]]; then
-    deno run --allow-read=day-$1/ --watch day-$1/part1.ts test
+    deno run --allow-read=day-$1/ --allow-write=day-$1/output.txt --watch day-$1/part1.ts test
 else
     echo "No such day"
 fi
