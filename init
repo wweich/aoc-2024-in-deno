@@ -14,7 +14,7 @@ if [[ $day -le 0 && "$(date +%m)" = "12" ]]; then
     day="$(date +%d)"
 fi
 
-day="${day/0/}"
+day="${day#"${day%%[!0]*}"}"
 
 if [ ! -e day-$day ]; then
     mkdir day-$day/
