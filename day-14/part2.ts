@@ -57,9 +57,9 @@ console.log(counter);
 
 let output = "";
 for (let y = 0; y < maxY; y++) {
-    for (let x = 0; x < maxY; x++) {
+    for (let x = 0; x < maxX; x++) {
         output += robots.some((r) => r.position.y === y && r.position.x === x)
-            ? "·"
+            ? "•"
             : " ";
     }
     output += "\n";
