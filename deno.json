@@ -1,0 +1,10 @@
+{
+    "fmt": {
+        "lineWidth": 120,
+        "semiColons": true,
+        "useTabs": false,
+        "indentWidth": 4,
+        "singleQuote": true,
+        "proseWrap": "preserve"
+    }
+}
