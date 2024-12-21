@@ -42,7 +42,7 @@ function getShortestPath() {
         const path = queue.shift()!;
         const pos = path[path.length - 1];
         const lastPos = path[path.length - 2];
-        const direction = lastPos ? getDirection(pos, lastPos) : "h";
+        const direction = lastPos ? getDirection(pos, lastPos) : "e";
         const newPositions = [
             { x: pos.x + 1, y: pos.y },
             { x: pos.x, y: pos.y + 1 },
