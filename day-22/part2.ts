@@ -57,8 +57,11 @@ for (const prices of allPrices) {
     sequences.push(map);
 }
 
+counter = 0;
 for (const sequence of allSequences.values()) {
-    console.log('calculating sequence sum of', sequence);
+    if (counter++ % 1000 === 0) {
+        console.log('calculating sequence sum of', counter, 'to', counter + 1000, 'of', allSequences.size);
+    }
     const values = sequences.map((map) => map.get(sequence) ?? null) as (number | null)[] & { sum?: number };
     values.sum = values.reduce((sum, cur) => sum! + (cur ?? 0), 0)!;
     sequenceWithPrice.set(sequence, values);
