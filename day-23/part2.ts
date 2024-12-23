@@ -49,8 +49,8 @@ class Graph<T> {
         for (const r of remaining) {
             yield* this.#cliques(
                 new Set([...clique, r]),
-                new Set(Array.from(remaining).filter((u) => this.adjList.get(r)!.has(u))),
-                new Set(Array.from(skip).filter((u) => this.adjList.get(r)!.has(u))),
+                remaining.intersection(this.adjList.get(r)!),
+                skip.intersection(this.adjList.get(r)!),
             );
             remaining.delete(r);
             skip.add(r);
